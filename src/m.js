@@ -5,6 +5,7 @@
  * @author Jakub Olek <https://plus.google.com/112565259111817320425>
  */
 (function(context){
+	//TODO: speed up case m.ANY/undefined (http://jsperf.com/micro-js-selector-comparison)
 	var d = document,
 		byQry = d.querySelector || false,
 		byQryAll = d.querySelectorAll || false;
