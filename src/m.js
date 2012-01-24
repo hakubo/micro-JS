@@ -5,12 +5,9 @@
  * @author Jakub Olek <https://plus.google.com/112565259111817320425>
  */
 (function(context){
-	var byQry = document.querySelector || false,
-		byQryAll = document.querySelectorAll || false,
-		byId = document.getElementById,
-		byCls = document.getElementsByClassName,
-		byName = document.getElementsByName,
-		byTag = document.getElementsByTagName;
+	var d = document,
+		byQry = d.querySelector || false,
+		byQryAll = d.querySelectorAll || false;
 
 	/**
 	* selects one element from the DOM
@@ -27,20 +24,20 @@
 
 		switch(type){
 			case m.ID:
-				selected = byId(selector);
+				selected = d.getElementById(selector);
 				break;
 			case m.CLASS:
-				selected = byCls(selector)[0];
+				selected = d.getElementsByClassName(selector)[0];
 				break;
 			case m.NAME:
-				selected = byName(selector)[0];
+				selected = d.getElementsByName(selector)[0];
 				break;
 			case m.TAG:
-				selected = byTag(selector)[0];
+				selected = d.getElementsByTagName(selector)[0];
 				break;
 			case m.ANY:
 			default:
-				selected = (byQry) ? byQry(selector) : false;
+				selected = (byQry) ? d.querySelector(selector) : false;
 		}
 
 		if(!selected && errorOnMissing)
@@ -71,19 +68,19 @@
 
 		switch(type){
 			case m.CLASS:
-				selected = byCls(selector);
+				selected = d.getElementsByClassName(selector);
 				break;
 			case m.NAME:
-				selected = byName(selector);
+				selected = d.getElementsByName(selector);
 				break;
 			case m.TAG:
-				selected = byTag(selector);
+				selected = d.getElementsByTagName(selector);
 				break;
 			case m.ID:
 				selector = '#' + selector;
 			case m.ANY:
 			default:
-				selected = (byQryAll) ? byQryAll(selector) : false;
+				selected = (byQryAll) ? d.querySelectorAll(selector) : false;
 		}
 
 		if(!selected && errorOnMissing)
@@ -104,4 +101,4 @@
 	MSelectorError.prototype.toString = function(){
 		return this.message + " for '" + this.selector + "'" + ((this.type) ? " filtering by " + this.type : "");
 	}
-})(window);
+})(this);
