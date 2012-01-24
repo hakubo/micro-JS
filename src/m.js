@@ -104,4 +104,4 @@
 	MSelectorError.prototype.toString = function(){
 		return this.message + " for '" + this.selector + "'" + ((this.type) ? " filtering by " + this.type : "");
 	}
-})(this);
+})(window);
