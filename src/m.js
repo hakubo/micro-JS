@@ -94,8 +94,14 @@
 	};
 
 	var MSelectorError = context.MSelectorError = function(selector, type){
-		this.message = "No matches for '" + selector + "'" + ((type) ? " filtering by " + type : "");
+		this.message = "No matches";
+		this.selector = selector;
+		this.type = type
 	}
 
 	MSelectorError.prototype = new Error();
+	
+	MSelectorError.prototype.toString = function(){
+		return this.message + " for '" + this.selector + "'" + ((this.type) ? " filtering by " + this.type : "");
+	}
 })(this);
